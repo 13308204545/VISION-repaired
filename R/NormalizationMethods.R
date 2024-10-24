@@ -165,9 +165,9 @@ NormData <- function(data, rowOffsets = NULL, rowScaleFactors = NULL,
     if (!is(data, "Matrix")) {
         colFill <- colCounts(data, cols = seq_len(min(ncol(data), 500)), value = 0) / nrow(data)
         if (mean(colFill) < .5){
-            data <- as(data, "dgCMatrix")
+            data <- as(as(as(data, "dMatrix"), "generalMatrix"), "unpackedMatrix")
         } else {
-            data <- as(data, "dgeMatrix")
+            data <- as(as(as(data, "dMatrix"), "generalMatrix"), "unpackedMatrix")
         }
     }
 
